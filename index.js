@@ -30,6 +30,7 @@ app.get('/', function(req, res) {
 });
 
 app.post('/', parser.single('image'), function(req, res) {
+	res.json(req.file);
 	res.send("Done");
 });
 
