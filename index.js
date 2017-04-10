@@ -1,6 +1,7 @@
 var express = require("express"),
 	pg = require("pg"),
-	cors = require("cors");
+	cors = require("cors"),
+	bodyParser = require("body-parser");
 
 var app = express();
 
