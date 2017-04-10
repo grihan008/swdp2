@@ -2,6 +2,7 @@ var express = require("express"),
 	pg = require("pg"),
 	cors = require("cors"),
 	bodyParser = require("body-parser"),
+	multer = require("multer"),
 	cloudinary = require("cloudinary"),
 	cloudinaryStorage = require("multer-storage-cloudinary");
 
