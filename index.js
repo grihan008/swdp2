@@ -18,11 +18,10 @@ app.get('/categories', function(req, res) {
 				res.send("Error");
 			}
 			else{
-				res.send(result.rows);
+				res.send(result.rows[0]);
 			}
 		});
 	});
-    res.send("Hello world");
 });
 
 app.listen(app.get('port'), function() {
