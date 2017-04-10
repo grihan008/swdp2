@@ -18,7 +18,7 @@ app.get('/categories', function(req, res) {
 				res.send("Error");
 			}
 			else{
-				res.send(result.rows[0]);
+				res.json(result.rows);
 			}
 		});
 	});
