@@ -10,7 +10,18 @@ app.set('port', (process.env.PORT || 3000));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get('/', function(req, res) {
+app.get('/categories', function(req, res) {
+	pg.connect(process.env.DATABASE_URL, function(err, client, done){
+		client.query("SELECT * FROM categories", function(err, result){
+			done();
+			if (err){
+				res.send("Error");
+			}
+			else{
+				res.send(result.rows);
+			}
+		});
+	});
     res.send("Hello world");
 });
 
