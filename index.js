@@ -136,7 +136,21 @@ app.get('/skills/:cat_id', function(req,res){
 
 app.get('/skill/:id', function(req,res){
 	pg.connect(process.env.DATABASE_URL, function(err, client, done){
-		client.query("SELECT skills.name,skills.xp,photos_skills.description FROM skills inner join photos_skills on skills.id = photos_skills.skill_id where id="+req.params.id+"", function(err, result){
+		client.query("SELECT * FROM skills where id="+req.params.id+"", function(err, result){
+			done();
+			if (err){
+				res.send("Error");
+			}
+			else{
+				res.json(result.rows);
+			}
+		});
+	});		
+});
+
+app.get('/skill_steps/:id', function(req,res){
+	pg.connect(process.env.DATABASE_URL, function(err, client, done){
+		client.query("SELECT * FROM photos_skills where skill_id="+req.params.id+"", function(err, result){
 			done();
 			if (err){
 				res.send("Error");

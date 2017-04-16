@@ -16,20 +16,21 @@
 	$.ajax("https://sheltered-savannah-33614.herokuapp.com/skill/"+<%= id %>)
 	.done(function(result){
 		result.forEach(function (item,i) {
-			if (i){
-				var skillblock = '<div class="skillblock">'+
-				'<h3>'+item.name+'</h3>'+
-				'<h4>'+item.xp+'</h4>'+
-				'<h4>'+item.description+'</h4>'+
-				'</div>';
-				$("main").append(skillblock);
+			var skillblock = '<div class="skillblock">'+
+			'<h3>'+item.name+'</h3>'+
+			'<h4>'+item.xp+'</h4>'+
+			'</div>';
+			$("main").append(skillblock);
+			$.ajax("https://sheltered-savannah-33614.herokuapp.com/skill_steps/"+<%= id %>)
+			.done(function(res)){
+				res.forEach(function(item,i){
+					var skillblock = '<div class="skillblock">'+
+					'<h4>'+item.description+'</h4>'+
+					'</div>';
+					$("main").append(skillblock);
+				});
 			}
-			else{
-				var skillblock = '<div class="skillblock">'+
-				'<h4>'+item.description+'</h4>'+
-				'</div>';
-				$("main").append(skillblock);				
-			}
+								
 		});
 	});
 </script>
