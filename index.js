@@ -20,19 +20,32 @@ app.set('port', (process.env.PORT || 3000));
 
 app.use(bodyParser.json());
 app.use(cors());
+app.use(express.static(__dirname+"/Views"));
+app.engine('html', require('ejs').renderFile);
 
-app.get('/', function(req, res) {
-  res.send('<form method="post" enctype="multipart/form-data">'
+app.get('/test', function(req,res){
+	res.send('<form method="post" enctype="multipart/form-data">'
     + '<p>Public ID: <input type="text" name="title"/></p>'
-    + '<p>Image: <input type="file" name="image"/></p>'
     + '<p><input type="submit" value="Upload"/></p>'
-    + '</form>');
+    + '</form>')
 });
 
-app.post('/', parser.single('image'), function(req, res) {
-	res.json(req.file);
-	res.send("Done");
+app.post('/test',function(req,res){
+	req.send("OK");
 });
+
+// app.get('/', function(req, res) {
+//   res.send('<form method="post" enctype="multipart/form-data">'
+//     + '<p>Public ID: <input type="text" name="title"/></p>'
+//     + '<p>Image: <input type="file" name="image"/></p>'
+//     + '<p><input type="submit" value="Upload"/></p>'
+//     + '</form>');
+// });
+
+// app.post('/', parser.single('image'), function(req, res) {
+// 	res.json(req.file);
+// 	res.send("Done");
+// });
 
 app.get('/categories', function(req, res) {
 	pg.connect(process.env.DATABASE_URL, function(err, client, done){
