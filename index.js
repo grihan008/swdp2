@@ -31,7 +31,7 @@ app.get('/test', function(req,res){
 });
 
 app.post('/test',function(req,res){
-	res.send("OK");
+	res.render('test',{title:req.body.title});
 });
 
 // app.get('/', function(req, res) {
