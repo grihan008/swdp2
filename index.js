@@ -120,6 +120,20 @@ app.get('/categories', function(req, res) {
 	});
 });
 
+app.get('/skills/:cat_id', function(){
+	pg.connect(process.env.DATABASE_URL, function(err, client, done){
+		client.query("SELECT * FROM skills where cat_id="+"req.params.cat_id", function(err, result){
+			done();
+			if (err){
+				res.send("Error");
+			}
+			else{
+				res.json(result.rows);
+			}
+		});
+	});		
+});
+
 app.all('*', function(req, res) {
   res.send("404");
 });
