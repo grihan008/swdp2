@@ -120,7 +120,7 @@ app.get('/categories', function(req, res) {
 	});
 });
 
-app.get('/skills/:cat_id', function(){
+app.get('/skills/:cat_id', function(req,res){
 	pg.connect(process.env.DATABASE_URL, function(err, client, done){
 		client.query("SELECT * FROM skills where cat_id="+"req.params.cat_id", function(err, result){
 			done();
