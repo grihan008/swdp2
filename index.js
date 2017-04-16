@@ -74,11 +74,11 @@ app.post('/loginadmin', function(req,res){
 
 app.get('/admin', function(req,res){
 	sess=req.session;
-	if (sess.adminLoggedIn){
-		res.send("NIIIIIIIIIICE");
+	if (!sess.adminLoggedIn){
+		res.redirect("/loginadmin");
 	}
 	else{
-		res.redirect("/loginadmin");
+		
 	}
 });
 

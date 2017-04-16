@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Admin</title>
+	<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+	<main>
+
+	</main>
+<script>
+	$.ajax("https://sheltered-savannah-33614.herokuapp.com/categories")
+	.done(function(result){
+		result.forEach(function (item,i) {
+			var catblock = '<div class="catblock">'+
+			'<h3>'+item.name+'</h3>'+
+			'</div>'
+		})
+	});
+</script>
+</body>
+</html>
