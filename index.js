@@ -134,6 +134,16 @@ app.get('/skills/:cat_id', function(){
 	});		
 });
 
+app.get('/adminskills/:cat_id', function(){
+	sess=req.session;
+	if (!sess.adminLoggedIn){
+		res.redirect("/loginadmin");
+	}
+	else{
+		res.render("adminskills",{cat_id: req.params.cat_id});
+	}	
+})
+
 app.all('*', function(req, res) {
   res.send("404");
 });

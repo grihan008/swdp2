@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Admin</title>
+	<title>Skills</title>
 	<script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -13,14 +13,15 @@
 
 	</main>
 <script>
-	$.ajax("https://sheltered-savannah-33614.herokuapp.com/categories")
+	$.ajax("https://sheltered-savannah-33614.herokuapp.com/skills/"+<%= cat_id %>)
 	.done(function(result){
 		result.forEach(function (item,i) {
-			var catblock = '<div class="catblock">'+
+			var skillblock = '<div class="skillblock">'+
 			'<h3>'+item.name+'</h3>'+
-			'<a href="https://sheltered-savannah-33614.herokuapp.com/adminskills/'+item.id+'">View</a>'+
+			'<h4>'+item.xp+'</h4>'+
+			'<a href="https://sheltered-savannah-33614.herokuapp.com/adminskill/'+item.id+'">View</a>'+
 			'</div>';
-			$("main").append(catblock);
+			$("main").append(skillblock);
 		});
 	});
 </script>
