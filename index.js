@@ -4,7 +4,8 @@ var express = require("express"),
 	bodyParser = require("body-parser"),
 	multer = require("multer"),
 	cloudinary = require("cloudinary"),
-	cloudinaryStorage = require("multer-storage-cloudinary");
+	cloudinaryStorage = require("multer-storage-cloudinary"),
+	session = require('express-session');
 
 var app = express();
 
@@ -17,35 +18,61 @@ var storage = cloudinaryStorage({
 var parser = multer({ storage: storage });
 
 app.set('port', (process.env.PORT || 3000));
+app.set('view engine', 'ejs');
+app.set('views', './views');
 
+app.use(session({secret: 'ihatethisproject'}));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(bodyParser.json());
 app.use(cors());
-app.set('views', __dirname + '/views');
-app.set('view engine', 'html');
 
-// app.get('/test', function(req,res){
-// 	res.send('<form method="post" enctype="multipart/form-data">'
-//     + '<p>Public ID: <input type="text" name="title"/></p>'
-//     + '<p><input type="submit" value="Upload"/></p>'
-//     + '</form>')
-// });
+app.get('/login', function(){
 
-app.get('/test',function(req,res){
-	res.render('test');
 });
 
-// app.get('/', function(req, res) {
-//   res.send('<form method="post" enctype="multipart/form-data">'
-//     + '<p>Public ID: <input type="text" name="title"/></p>'
-//     + '<p>Image: <input type="file" name="image"/></p>'
-//     + '<p><input type="submit" value="Upload"/></p>'
-//     + '</form>');
-// });
+app.get('/loginadmin', function(req,res){
+	res.render('loginadmin');
+});
 
-// app.post('/', parser.single('image'), function(req, res) {
-// 	res.json(req.file);
-// 	res.send("Done");
-// });
+app.post('/loginadmin', function(req,res){
+	pg.connect(process.env.DATABASE_URL, function(err, client, done){
+		client.query("SELECT * FROM admins", function(err, result){
+			done();
+			if (err){
+				res.send("Error");
+			}
+			else{
+				res.json(result.rows);
+			}
+		});
+	});	
+});
+
+app.get('/test', function(req,res){
+	res.send('<form method="post">'
+    + '<p>Public ID: <input type="text" name="title"/></p>'
+    + '<p><input type="submit" value="Upload"/></p>'
+    + '</form>')
+});
+
+app.post('/test',function(req,res){
+	res.render('test', {'title':req.body.title});
+});
+
+app.get('/upload', function(req, res) {
+  res.send('<form method="post" enctype="multipart/form-data">'
+    + '<p>Public ID: <input type="text" name="title"/></p>'
+    + '<p>Image: <input type="file" name="image"/></p>'
+    + '<p><input type="submit" value="Upload"/></p>'
+    + '</form>');
+});
+
+app.post('/upload', parser.single('image'), function(req, res) {
+	res.json(req.file);
+	res.send("Done");
+});
 
 app.get('/categories', function(req, res) {
 	pg.connect(process.env.DATABASE_URL, function(err, client, done){
@@ -55,10 +82,18 @@ app.get('/categories', function(req, res) {
 				res.send("Error");
 			}
 			else{
-				res.json(result.rows);
+				result.rows.forEach(function(item, i){
+					if ((req.body.login==item.login)&&(req.body.password==item.password)){
+						
+					}
+				});
 			}
 		});
 	});
+});
+
+app.all('*', function(req, res) {
+  res.redirect("/login");
 });
 
 app.listen(app.get('port'), function() {
