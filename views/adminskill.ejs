@@ -22,7 +22,7 @@
 			'</div>';
 			$("main").append(skillblock);
 			$.ajax("https://sheltered-savannah-33614.herokuapp.com/skill_steps/"+<%= id %>)
-			.done(function(res)){
+			.done(function(res){
 				res.forEach(function(item,i){
 					var skillblock = '<div class="skillblock">'+
 					'<h4>'+item.description+'</h4>'+
