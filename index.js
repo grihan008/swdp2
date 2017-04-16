@@ -47,8 +47,10 @@ app.post('/loginadmin', function(req,res){
 				result.rows.forEach(function(item, i){
 					if ((req.body.login==item.login)&&(req.body.password==item.password)){
 						res.send("YEEEEAAAAAH");
+						return;
 					}
 				});
+				res.send("LOL");
 			}
 		});
 	});	
