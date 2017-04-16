@@ -93,7 +93,7 @@ app.get('/categories', function(req, res) {
 });
 
 app.all('*', function(req, res) {
-  res.redirect("/login");
+  res.send("404");
 });
 
 app.listen(app.get('port'), function() {
