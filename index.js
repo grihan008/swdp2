@@ -20,8 +20,8 @@ app.set('port', (process.env.PORT || 3000));
 
 app.use(bodyParser.json());
 app.use(cors());
-app.use(express.static(__dirname+"/Views"));
-app.engine('html', require('ejs').renderFile);
+app.use(express.static(__dirname+"/views"));
+app.engine('ejs', require('ejs').renderFile);
 
 app.get('/test', function(req,res){
 	res.send('<form method="post" enctype="multipart/form-data">'
