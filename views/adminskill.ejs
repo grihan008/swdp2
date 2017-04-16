@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<main>
+
+	</main>
+<script>
+	$.ajax("https://sheltered-savannah-33614.herokuapp.com/skill/"+<%= id %>)
+	.done(function(result){
+		result.forEach(function (item,i) {
+			var skillblock = '<div class="skillblock">'+
+			'<h3>'+item.name+'</h3>'+
+			'<h4>'+item.xp+'</h4>'+
+			'<h4>'+item.description+'</h4>'+
+			'</div>';
+			$("main").append(skillblock);
+		});
+	});
+</script>
+</body>
+</html>

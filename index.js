@@ -134,6 +134,20 @@ app.get('/skills/:cat_id', function(req,res){
 	});		
 });
 
+app.get('/skill/:id', function(req,res){
+	pg.connect(process.env.DATABASE_URL, function(err, client, done){
+		client.query("SELECT skills.name,skills.xp,photos_skills.description FROM skills inner join photos_skills on skills.id = photos_skills.skill_id where id="+req.params.id+"", function(err, result){
+			done();
+			if (err){
+				res.send("Error");
+			}
+			else{
+				res.json(result.rows);
+			}
+		});
+	});		
+});
+
 app.get('/adminskills/:cat_id', function(req,res){
 	sess=req.session;
 	if (!sess.adminLoggedIn){
@@ -141,6 +155,16 @@ app.get('/adminskills/:cat_id', function(req,res){
 	}
 	else{
 		res.render("adminskills",{cat_id: req.params.cat_id});
+	}	
+})
+
+app.get('/adminskill/:id', function(req,res){
+	sess=req.session;
+	if (!sess.adminLoggedIn){
+		res.redirect("/loginadmin");
+	}
+	else{
+		res.render("adminskill",{id: req.params.id});
 	}	
 })
 
