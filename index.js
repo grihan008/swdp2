@@ -20,10 +20,9 @@ app.set('port', (process.env.PORT || 3000));
 
 app.use(bodyParser.json());
 app.use(cors());
-// app.use(express.static(__dirname+"/views"));
-// app.engine('ejs', require('ejs').renderFile);
-app.set("views", "./views");
-app.set("view engine", "ejs");
+app.engine('.html', require('ejs').__express);
+app.set('views', __dirname + '/views');
+app.set('view engine', 'html');
 
 // app.get('/test', function(req,res){
 // 	res.send('<form method="post" enctype="multipart/form-data">'
