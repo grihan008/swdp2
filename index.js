@@ -84,7 +84,7 @@ app.get('/categories', function(req, res) {
 			else{
 				result.rows.forEach(function(item, i){
 					if ((req.body.login==item.login)&&(req.body.password==item.password)){
-						
+						res.send("YEEEEAAAAAH");
 					}
 				});
 			}
