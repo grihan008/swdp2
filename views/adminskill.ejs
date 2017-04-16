@@ -16,7 +16,7 @@
 	$.ajax("https://sheltered-savannah-33614.herokuapp.com/skill/"+<%= id %>)
 	.done(function(result){
 		result.forEach(function (item,i) {
-			if (i==0){
+			if (i){
 				var skillblock = '<div class="skillblock">'+
 				'<h3>'+item.name+'</h3>'+
 				'<h4>'+item.xp+'</h4>'+
