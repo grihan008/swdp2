@@ -134,7 +134,7 @@ app.get('/skills/:cat_id', function(){
 	});		
 });
 
-app.get('/adminskills/:cat_id', function(){
+app.get('/adminskills/:cat_id', function(req,res){
 	sess=req.session;
 	if (!sess.adminLoggedIn){
 		res.redirect("/loginadmin");
