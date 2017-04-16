@@ -38,13 +38,17 @@ app.get('/loginadmin', function(req,res){
 
 app.post('/loginadmin', function(req,res){
 	pg.connect(process.env.DATABASE_URL, function(err, client, done){
-		client.query("SELECT * FROM admins", function(err, result){
+		client.query("SELECT * FROM categories", function(err, result){
 			done();
 			if (err){
 				res.send("Error");
 			}
 			else{
-				res.json(result.rows);
+				result.rows.forEach(function(item, i){
+					if ((req.body.login==item.login)&&(req.body.password==item.password)){
+						res.send("YEEEEAAAAAH");
+					}
+				});
 			}
 		});
 	});	
@@ -82,11 +86,7 @@ app.get('/categories', function(req, res) {
 				res.send("Error");
 			}
 			else{
-				result.rows.forEach(function(item, i){
-					if ((req.body.login==item.login)&&(req.body.password==item.password)){
-						res.send("YEEEEAAAAAH");
-					}
-				});
+				res.json(result.rows);
 			}
 		});
 	});
