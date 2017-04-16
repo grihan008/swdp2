@@ -38,7 +38,7 @@ app.get('/loginadmin', function(req,res){
 
 app.post('/loginadmin', function(req,res){
 	pg.connect(process.env.DATABASE_URL, function(err, client, done){
-		client.query("SELECT * FROM categories", function(err, result){
+		client.query("SELECT * FROM admins", function(err, result){
 			done();
 			if (err){
 				res.send("Error");
