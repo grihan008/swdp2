@@ -25,14 +25,14 @@ app.use(cors());
 app.set("views", "./views");
 app.set("view engine", "ejs");
 
-app.get('/test', function(req,res){
-	res.send('<form method="post" enctype="multipart/form-data">'
-    + '<p>Public ID: <input type="text" name="title"/></p>'
-    + '<p><input type="submit" value="Upload"/></p>'
-    + '</form>')
-});
+// app.get('/test', function(req,res){
+// 	res.send('<form method="post" enctype="multipart/form-data">'
+//     + '<p>Public ID: <input type="text" name="title"/></p>'
+//     + '<p><input type="submit" value="Upload"/></p>'
+//     + '</form>')
+// });
 
-app.post('/test',function(req,res){
+app.get('/test',function(req,res){
 	res.render('test');
 });
 
