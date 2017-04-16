@@ -28,6 +28,8 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(cors());
 
+var sess;
+
 app.get('/login', function(){
 
 });
@@ -37,23 +39,47 @@ app.get('/loginadmin', function(req,res){
 });
 
 app.post('/loginadmin', function(req,res){
-	pg.connect(process.env.DATABASE_URL, function(err, client, done){
-		client.query("SELECT * FROM admins", function(err, result){
-			done();
-			if (err){
-				res.send("Error");
-			}
-			else{
-				result.rows.forEach(function(item, i){
-					if ((req.body.login==item.login)&&(req.body.password==item.password)){
-						res.send("YEEEEAAAAAH");
-						return;
-					}
-				});
-				res.send("LOL");
-			}
+	sess=req.session;
+	if (sess.adminLoggedIn){
+		res.redirect("/admin");
+	}
+	else{
+		pg.connect(process.env.DATABASE_URL, function(err, client, done){
+			client.query("SELECT * FROM admins", function(err, result){
+				done();
+				var loggedin;
+				if (err){
+					res.send("Error");
+				}
+				else{
+					result.rows.forEach(function(item, i){
+						if ((req.body.login==item.login)&&(req.body.password==item.password)){
+							loggedin=true;
+						}
+					});
+				}
+				if (loggedin){
+					sess.adminLoggedIn=true;
+					res.redirect('/admin');
+				}
+				else{
+					req.session.destroy(function(err) {
+						
+					})
+				}
+			});
 		});
-	});	
+	}	
+});
+
+app.get('/admin', function(req,res){
+	sess=req.session;
+	if (sess.adminLoggedIn){
+		res.send("NIIIIIIIIIICE");
+	}
+	else{
+		res.redirect("/loginadmin");
+	}
 });
 
 app.get('/test', function(req,res){
