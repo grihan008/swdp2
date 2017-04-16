@@ -162,6 +162,14 @@ app.get('/skill_steps/:id', function(req,res){
 	});		
 });
 
+app.post('/del_step/:id', function(req,res){
+	pg.connect(process.env.DATABASE_URL, function(err, client, done){
+		client.query("Delete FROM photos_skills where id="+req.body.id+"", function(err, result){
+			done();
+		});
+	});		
+});
+
 app.get('/adminskills/:cat_id', function(req,res){
 	sess=req.session;
 	if (!sess.adminLoggedIn){
