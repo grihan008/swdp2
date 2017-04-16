@@ -78,7 +78,7 @@ app.get('/admin', function(req,res){
 		res.redirect("/loginadmin");
 	}
 	else{
-		
+		res.resolve("admin");
 	}
 });
 
