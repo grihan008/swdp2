@@ -21,20 +21,20 @@
 			'<button class="view-skills" data-cat-id="'+item.id+'">View</button>'+
 			'</div>';
 			$("main").append(catblock);
-		})
+				$(".view-skills").click(function(){
+					$("main").empty();
+					$.ajax("https://sheltered-savannah-33614.herokuapp.com/skills/"+$(this).attr("data-cat-id"))
+					.done(function(result) {
+					var skillblock = '<div class="catblock">'+
+					'<h3>'+item.name+'</h3>'+
+					'<h4>'+item.xp+'</h4>'+
+					'<button class="view-skill" data-skill-id="'+item.id+'">View</button>'+
+					'</div>';
+					$("main").append(skillblock);
+				});
+			});
+		});
 	});
-	$(".view-skills").click(function(){
-		$("main").empty();
-		$.ajax("https://sheltered-savannah-33614.herokuapp.com/skills/"+$(this).attr("data-cat-id"))
-		.done(function(result) {
-			var skillblock = '<div class="catblock">'+
-			'<h3>'+item.name+'</h3>'+
-			'<h4>'+item.xp+'</h4>'+
-			'<button class="view-skill" data-skill-id="'+item.id+'">View</button>'+
-			'</div>';
-			$("main").append(skillblock);
-		})
-	})
 </script>
 </body>
 </html>
