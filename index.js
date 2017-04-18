@@ -201,7 +201,7 @@ app.post('/move_step', function(req,res){
 
 app.post('/add_step', function(req,res){
 	pg.connect(process.env.DATABASE_URL, function(err, client, done){
-		client.query("insert into steps(skill_id, heading, description, step) values("+req.body.id+","+req.body.heading+","+req.body.description+","+req.body.step+")", function(err, result){
+		client.query("insert into steps(skill_id, heading, description, step) values("+req.body.id+",'"+req.body.heading+"','"+req.body.description+"',"+req.body.step+")", function(err, result){
 			done();
 		});
 	});		
