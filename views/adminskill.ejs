@@ -56,9 +56,12 @@
 			formData[$(this).attr("name")] = $(this).val();
 		});
 		formData["id"] = id;
-		$.post($(this).attr("action"), formData).done(function (data) {
-        	location.reload();
-   		});
+		for (key in formData){
+			alert(key+" "+formData[key]);
+		}
+		// $.post($(this).attr("action"), formData).done(function (data) {
+  //       	location.reload();
+  //  		});
 	});
 </script>
 </body>
