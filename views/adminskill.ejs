@@ -53,7 +53,7 @@
 		e.preventDefault();
 		var formData={};
 		$(this).find("input[name]").each(function(index,node){
-			formData[node.name] = node.val();
+			formData[$(this).attr("name")] = $(this).val();
 		});
 		formData["id"] = id;
 		$.post($(this).attr("action"), formData).done(function (data) {
