@@ -49,19 +49,16 @@
 			});								
 		});
 	});
-	$(".addstep").submit(function(e){
+	$("#addstep").submit(function(e){
 		e.preventDefault();
 		var formData={};
 		$(this).find("input[name]").each(function(index,node){
-			formData[$(this).attr("name")] = $(this).val();
+			formData[node.name] = node.value;
 		});
 		formData["id"] = id;
-		for (key in formData){
-			alert(key+" "+formData[key]);
-		}
-		// $.post($(this).attr("action"), formData).done(function (data) {
-  //       	location.reload();
-  //  		});
+		$.post($(this).attr("action"), formData).done(function (data) {
+        	location.reload();
+   		});
 	});
 </script>
 </body>
