@@ -171,7 +171,7 @@ app.get('/skill/:id', function(req,res){
 //get skills' steps
 app.get('/skill_steps/:id', function(req,res){
 	pg.connect(process.env.DATABASE_URL, function(err, client, done){
-		client.query("SELECT * FROM steps where skill_id="+req.params.id+"", function(err, result){
+		client.query("SELECT * FROM steps where skill_id="+req.params.id+" Order by step", function(err, result){
 			done();
 			if (err){
 				res.send("Error");
@@ -186,6 +186,14 @@ app.get('/skill_steps/:id', function(req,res){
 app.post('/del_step', function(req,res){
 	pg.connect(process.env.DATABASE_URL, function(err, client, done){
 		client.query("Delete FROM steps where id="+req.body.id, function(err, result){
+			done();
+		});
+	});		
+});
+
+app.post('/move_step', function(req,res){
+	pg.connect(process.env.DATABASE_URL, function(err, client, done){
+		client.query("update steps set step="+req.body.step+" where id="+req.body.id, function(err, result){
 			done();
 		});
 	});		

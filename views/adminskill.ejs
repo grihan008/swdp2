@@ -26,12 +26,16 @@
 				res.forEach(function(item,i){
 					var skillblock = '<div class="skillblock">'+
 					'<h4>'+item.description+'</h4>'+
-					'<input type="text" class="step" value="'+item.step+'">'+
+					'<input type="text" data-link="https://sheltered-savannah-33614.herokuapp.com/move_step" data-id="'+item.id+'" class="step" value="'+item.step+'">'+
 					'<button class="deldesc" data-link="https://sheltered-savannah-33614.herokuapp.com/del_step" data-id="'+item.id+'">Delete</button>'+
 					'</div>';
 					$("main").append(skillblock);
 					$(".deldesc").click(function(){
 						$.post($(this).attr("data-link"), {id: $(this).attr("data-id")});
+						location.reload();
+					});
+					$(".step").change(function(){
+						$.post($(this).attr("data-link"), {id: $(this).attr("data-id"), step: $(this).val()});
 						location.reload();
 					})
 				});
