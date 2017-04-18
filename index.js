@@ -190,10 +190,18 @@ app.post('/del_step', function(req,res){
 		});
 	});		
 });
-
+//move step
 app.post('/move_step', function(req,res){
 	pg.connect(process.env.DATABASE_URL, function(err, client, done){
 		client.query("update steps set step="+req.body.step+" where id="+req.body.id, function(err, result){
+			done();
+		});
+	});		
+});
+
+app.post('/add_step', function(req,res){
+	pg.connect(process.env.DATABASE_URL, function(err, client, done){
+		client.query("insert into steps(skill_id, heading, description, step) values("+req.body.id+","+req.body.heading+","+req.body.description+","+req.body.step+")", function(err, result){
 			done();
 		});
 	});		

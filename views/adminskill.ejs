@@ -12,8 +12,15 @@
 	<main>
 
 	</main>
+	<form id="#addstep" method="post" action="https://sheltered-savannah-33614.herokuapp.com/add_step/">
+		Heading: <input type="text" name="heading" required="">
+		Description: <input type="text" name="description" required="">
+		Step: <input type="number" name="step" required="">
+		<input type="submit">
+	</form>
 <script>
-	$.ajax("https://sheltered-savannah-33614.herokuapp.com/skill/"+<%= id %>)
+	var id = <%= id %>;
+	$.ajax("https://sheltered-savannah-33614.herokuapp.com/skill/"+id)
 	.done(function(result){
 		result.forEach(function (item,i) {
 			var skillblock = '<div class="skillblock">'+
@@ -21,7 +28,7 @@
 			'<h4>'+item.xp+'</h4>'+
 			'</div>';
 			$("main").append(skillblock);
-			$.ajax("https://sheltered-savannah-33614.herokuapp.com/skill_steps/"+<%= id %>)
+			$.ajax("https://sheltered-savannah-33614.herokuapp.com/skill_steps/"+id)
 			.done(function(res){
 				res.forEach(function(item,i){
 					var skillblock = '<div class="skillblock">'+
@@ -41,6 +48,17 @@
 				});
 			});								
 		});
+	});
+	$(".addstep").submit(function(e){
+		e.preventDefault();
+		var formData={};
+		$(this).find("input[name]").each(function(index,node){
+			formData[node.name] = node.value;
+		});
+		formData["id"] = id;
+		$.post($(this).attr("action"), formData).done(function (data) {
+        	location.reload();
+   		});
 	});
 </script>
 </body>
