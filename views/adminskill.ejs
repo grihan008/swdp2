@@ -56,7 +56,7 @@
 						        processData: false,
 						        contentType: false,
 						        success: function(res){
-						        	$.post("https://sheltered-savannah-33614.herokuapp.com/add_step_image", {id: $("updphotoform input[name='id']").val(), image: res.url});
+						        	$.post("https://sheltered-savannah-33614.herokuapp.com/add_step_image", {id: $(".updphotoform input[name='id']").val(), image: res.url});
 						        },
 						        error: function(er){}
 						});
