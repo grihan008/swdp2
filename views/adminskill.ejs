@@ -47,7 +47,7 @@
 					$(".updphotoform").submit(function(e){
 						e.preventDefault();
 						var url=$(this).attr("action");
-						var form = new FormData($(".updphotoform")[0]);
+						var form = new FormData($(this)[0]);
 						$.ajax({
 						        url: url,
 						        method: "POST",
