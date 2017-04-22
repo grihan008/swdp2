@@ -32,7 +32,10 @@
 			.done(function(res){
 				res.forEach(function(item,i){
 					var skillblock = '<div class="skillblock">'+
-					'<h4>'+item.description+'</h4>'+
+					'<h4>'+item.heading+'</h4>'+
+					'<img src='+item.photo_url+'>'+
+					'<form class="updphotoform" method="POST" action="https://sheltered-savannah-33614.herokuapp.com/change_step_photo" enctype="multipart/form-data"><input type="file" name="image"><input type="hidden" name="id" value="+'id'+">'+
+					'<button type="submit" class="updphoto"></form>'
 					'<input type="text" data-link="https://sheltered-savannah-33614.herokuapp.com/move_step" data-id="'+item.id+'" class="step" value="'+item.step+'">'+
 					'<button class="deldesc" data-link="https://sheltered-savannah-33614.herokuapp.com/del_step" data-id="'+item.id+'">Delete</button>'+
 					'</div>';
@@ -41,6 +44,14 @@
 						$.post($(this).attr("data-link"), {id: $(this).attr("data-id")});
 						location.reload();
 					});
+					$(".updphotoform").submit(function(e){
+						e.preventDefault();
+						var formData = new FormData($(this)[0]);
+
+						$.post($(this).attr("action"), formData).done(function(res){
+							$.post("https://sheltered-savannah-33614.herokuapp.com/add_step_image", {id: $("updphotoform input[name='id']").val(), image: res.url});
+						});
+					})
 					$(".step").change(function(){
 						$.post($(this).attr("data-link"), {id: $(this).attr("data-id"), step: $(this).val()});
 						location.reload();
