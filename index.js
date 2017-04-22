@@ -134,10 +134,10 @@ app.post('/upload_step', parser.single('image'), function(req, res) {
 			}
 			else{
 				res.json(result.rows);
+				res.redirect("/adminskill/"+req.body.id);
 			}
 		});
 	});	
-	res.render('adminskill',{'id': req.body.skillid});
 });
 //Get categories
 app.get('/categories', function(req, res) {
