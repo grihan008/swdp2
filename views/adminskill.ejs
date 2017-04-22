@@ -46,9 +46,10 @@
 					});
 					$(".updphotoform").submit(function(e){
 						e.preventDefault();
+						var url=$(this).attr("action");
 						var form = new FormData($(".updphotoform")[0]);
 						$.ajax({
-						        url: your_url,
+						        url: url,
 						        method: "POST",
 						        dataType: 'json',
 						        data: form,
