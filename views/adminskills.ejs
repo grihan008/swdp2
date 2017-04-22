@@ -25,7 +25,7 @@
 			'<a href="https://sheltered-savannah-33614.herokuapp.com/adminskill/'+item.id+'">View</a>'+
 			'</div>';
 			$("main").append(skillblock);
-						$(".delskill").click(function(){
+				$(".delskill").click(function(){
 				$.post($(this).attr("data-link"), {id: $(this).attr("data-id")});
 				location.reload();
 			});
