@@ -35,7 +35,7 @@
 					'<h4>'+item.heading+'</h4>'+
 					'<img src='+item.photo_url+'>'+
 					'<form class="updphotoform" method="POST" action="https://sheltered-savannah-33614.herokuapp.com/change_step_photo" enctype="multipart/form-data"><input type="file" name="image"><input type="hidden" name="id" value="+'id'+">'+
-					'<button type="submit" class="updphoto">Update photo</button></form>'
+					'<button type="submit" class="updphoto">Update photo</button></form>'+
 					'<input type="text" data-link="https://sheltered-savannah-33614.herokuapp.com/move_step" data-id="'+item.id+'" class="step" value="'+item.step+'">'+
 					'<button class="deldesc" data-link="https://sheltered-savannah-33614.herokuapp.com/del_step" data-id="'+item.id+'">Delete</button>'+
 					'</div>';
@@ -67,7 +67,7 @@
 			formData[node.name] = node.value;
 		});
 		formData["id"] = id;
-		$.post($(this).attr("action"), formData).done(function (data) {
+		$.post($(this).attr("action"), formData).done(function () {
         	
    		});
    		location.reload();
