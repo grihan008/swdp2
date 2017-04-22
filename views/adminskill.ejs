@@ -60,6 +60,7 @@
 						        },
 						        error: function(er){}
 						});
+						location.reload();
 					})
 					$(".step").change(function(){
 						$.post($(this).attr("data-link"), {id: $(this).attr("data-id"), step: $(this).val()});
