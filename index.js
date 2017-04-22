@@ -133,7 +133,7 @@ app.post('/upload_step', parser.single('image'), function(req, res) {
 				res.send("Error");
 			}
 			else{
-				//res.redirect("/adminskill/"+req.body.skillid);
+				res.redirect("/test");
 			}
 		});
 	});	
