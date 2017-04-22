@@ -125,6 +125,20 @@ app.get('/upload', function(req, res) {
 app.post('/upload', parser.single('image'), function(req, res) {
 	res.json(req.file);
 });
+app.post('/uploadstep', parser.single('image'), function(req, res) {
+	pg.connect(process.env.DATABASE_URL, function(err, client, done){
+		client.query("update steps set photo_url="+req.file.url+" where id="+req.body.id, function(err, result){
+			done();
+			if (err){
+				res.send("Error");
+			}
+			else{
+				res.json(result.rows);
+			}
+		});
+	});	
+	res.render('adminskill',{'id': req.body.skillid});
+});
 //Get categories
 app.get('/categories', function(req, res) {
 	pg.connect(process.env.DATABASE_URL, function(err, client, done){
@@ -184,19 +198,6 @@ app.get('/skill_steps/:id', function(req,res){
 //delete skill
 app.post('/del_skill',function(req,res){
 
-});
-app.post('/add_step_image', function(req,res){
-	pg.connect(process.env.DATABASE_URL, function(err, client, done){
-		client.query("update steps set photo_url="+req.body.image+" where id="+req.body.id, function(err, result){
-			done();
-			if (err){
-				res.send("Error");
-			}
-			else{
-				res.json(result.rows);
-			}
-		});
-	});	
 });
 //delete step
 app.post('/del_step', function(req,res){
