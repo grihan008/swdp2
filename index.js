@@ -193,7 +193,7 @@ app.post('/change_step_photo', parser.single('image'), function(req, res) {
 });
 app.post('/add_step_image', function(req,res){
 	pg.connect(process.env.DATABASE_URL, function(err, client, done){
-		client.query("update steps set photo_url="+req.body.image+" where id="+req.body.id+, function(err, result){
+		client.query("update steps set photo_url="+req.body.image+" where id="+req.body.id, function(err, result){
 			done();
 			if (err){
 				res.send("Error");
