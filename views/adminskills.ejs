@@ -21,15 +21,14 @@
 			'<img src='+item.image_url+'>'+
 			'<h4>'+item.xp+'</h4>'+
 			'<button class="delskill" data-link="https://sheltered-savannah-33614.herokuapp.com/del_skill" data-id="'+item.id+'">Delete</button>'+
-			'</div>';
-			$("main").append(skillblock);
-			$(".delskill").click(function(){
-				$.post($(this).attr("data-link"), {id: $(this).attr("data-id")});
-				location.reload();
-			});
+			'</div>'+
 			'<a href="https://sheltered-savannah-33614.herokuapp.com/adminskill/'+item.id+'">View</a>'+
 			'</div>';
 			$("main").append(skillblock);
+						$(".delskill").click(function(){
+				$.post($(this).attr("data-link"), {id: $(this).attr("data-id")});
+				location.reload();
+			});
 		});
 	});
 </script>
