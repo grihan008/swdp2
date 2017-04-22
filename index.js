@@ -134,7 +134,7 @@ app.post('/upload_step', parser.single('image'), function(req, res) {
 			}
 			else{
 				alert(req.body.skillid);
-				res.redirect("/adminskill/"+req.body.skillid);
+				//res.redirect("/adminskill/"+req.body.skillid);
 			}
 		});
 	});	
