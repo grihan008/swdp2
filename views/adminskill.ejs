@@ -46,12 +46,18 @@
 					});
 					$(".updphotoform").submit(function(e){
 						e.preventDefault();
-						var formData = new FormData();
-						jQuery.each($(".updphotoform input[type='file']")[0].files, function(i, file) {
-   							formData.append("image", file);
-						});
-						$.post($(this).attr("action"), formData).done(function(res){
-							$.post("https://sheltered-savannah-33614.herokuapp.com/add_step_image", {id: $("updphotoform input[name='id']").val(), image: res.url});
+						var form = new FormData($(".updphotoform")[0]);
+						$.ajax({
+						        url: your_url,
+						        method: "POST",
+						        dataType: 'json',
+						        data: form,
+						        processData: false,
+						        contentType: false,
+						        success: function(res){
+						        	$.post("https://sheltered-savannah-33614.herokuapp.com/add_step_image", {id: $("updphotoform input[name='id']").val(), image: res.url});
+						        },
+						        error: function(er){}
 						});
 					})
 					$(".step").change(function(){
