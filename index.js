@@ -124,7 +124,6 @@ app.get('/upload', function(req, res) {
 
 app.post('/upload', parser.single('image'), function(req, res) {
 	res.json(req.file);
-	res.send("Done");
 });
 //Get categories
 app.get('/categories', function(req, res) {
@@ -185,11 +184,6 @@ app.get('/skill_steps/:id', function(req,res){
 //delete skill
 app.post('/del_skill',function(req,res){
 
-});
-//update_photo
-app.post('/change_step_photo', parser.single('image'), function(req, res) {
-	res.json(req.file);
-	res.send("Done");
 });
 app.post('/add_step_image', function(req,res){
 	pg.connect(process.env.DATABASE_URL, function(err, client, done){
