@@ -127,14 +127,14 @@ app.post('/upload', parser.single('image'), function(req, res) {
 });
 app.post('/upload_step', parser.single('image'), function(req, res) {
 	pg.connect(process.env.DATABASE_URL, function(err, client, done){
-		client.query("update steps set photo_url="+req.file.url+" where id="+req.body.id, function(err, result){
+		client.query("update steps set photo_url='"+req.file.url+"' where id="+req.body.id, function(err, result){
 			done();
 			if (err){
 				res.send("Error");
 			}
 			else{
 				res.json(result.rows);
-				res.redirect("/adminskill/"+req.body.id);
+				res.redirect("/adminskill/"+req.body.skillid);
 			}
 		});
 	});	
