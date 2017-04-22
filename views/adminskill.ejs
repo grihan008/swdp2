@@ -48,7 +48,7 @@
 						e.preventDefault();
 						var formData = new FormData();
 						jQuery.each($(".updphotoform input[type='file']")[0].files, function(i, file) {
-   							data.append("image", file);
+   							formData.append("image", file);
 						});
 						$.post($(this).attr("action"), formData).done(function(res){
 							$.post("https://sheltered-savannah-33614.herokuapp.com/add_step_image", {id: $("updphotoform input[name='id']").val(), image: res.url});
