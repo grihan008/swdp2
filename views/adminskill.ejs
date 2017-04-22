@@ -46,8 +46,8 @@
 					});
 					$(".updphotoform").submit(function(e){
 						e.preventDefault();
-
-						$.post($(this).attr("action"), $(this).serialize()).done(function(res){
+						var data = new FormData($(this)[0]);
+						$.post($(this).attr("action"), formData).done(function(res){
 							$.post("https://sheltered-savannah-33614.herokuapp.com/add_step_image", {id: $("updphotoform input[name='id']").val(), image: res.url});
 						});
 					})
