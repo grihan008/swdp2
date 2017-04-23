@@ -168,7 +168,7 @@ app.get('/categories', function(req, res) {
 //Get skills in category
 app.get('/skills/:cat_id', function(req,res){
 	pg.connect(process.env.DATABASE_URL, function(err, client, done){
-		client.query("SELECT * FROM skills where cat_id="+req.params.cat_id+"order by id", function(err, result){
+		client.query("SELECT * FROM skills where cat_id="+req.params.cat_id+"order by name", function(err, result){
 			done();
 			if (err){
 				res.send("Error");
