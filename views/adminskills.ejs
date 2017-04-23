@@ -25,6 +25,8 @@
 			var skillblock = '<div class="skillblock">'+
 			'<h3>'+item.name+'</h3>'+
 			'<img src='+item.image_url+'>'+
+					'<form class="updphotoform" method="POST" action="https://sheltered-savannah-33614.herokuapp.com/upload_skill" enctype="multipart/form-data"><input type="file" name="image"><input type="hidden" name="id" value="'+item.id+'"><input type="hidden" name="catid" value="'+cat_id+'">'+
+					'<button type="submit" class="updphoto">Update photo</button></form>'+			
 			'<h4>'+item.xp+'</h4>'+
 			'<a href="https://sheltered-savannah-33614.herokuapp.com/adminskill/'+item.id+'">View</a>'+
 			'<button class="delskill" data-link="https://sheltered-savannah-33614.herokuapp.com/del_skill" data-id="'+item.id+'">Delete</button>'+
@@ -45,10 +47,8 @@
 		var formData={};
 		$(this).find("input[name]").each(function(index,node){
 			formData[node.name] = node.value;
-			alert(node.name+" "+node.value);
 		});
 		formData["cat"] = cat_id;
-		alert(cat_id);
 		$.post($(this).attr("action"), formData).done(function () {
         	
    		});
