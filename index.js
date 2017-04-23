@@ -196,7 +196,19 @@ app.get('/skill_steps/:id', function(req,res){
 });
 //delete skill
 app.post('/del_skill',function(req,res){
-
+		pg.connect(process.env.DATABASE_URL, function(err, client, done){
+		client.query("Delete FROM skills where id="+req.body.id, function(err, result){
+			done();
+		});
+	});	
+});
+//add skill
+app.post('/add_skill', function(req,res){
+	pg.connect(process.env.DATABASE_URL, function(err, client, done){
+		// client.query("insert into skills(skill_id, heading, description, step) values("+req.body.id+",'"+req.body.heading+"','"+req.body.description+"',"+req.body.step+")", function(err, result){
+		// 	done();
+		// });
+	});		
 });
 //delete step
 app.post('/del_step', function(req,res){
