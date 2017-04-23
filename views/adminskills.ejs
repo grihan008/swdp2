@@ -47,7 +47,8 @@
 			formData[node.name] = node.value;
 			alert(node.name+" "+node.value);
 		});
-		formData["cat_id"] = cat_id;
+		formData["cat"] = cat_id;
+		alert(cat_id);
 		$.post($(this).attr("action"), formData).done(function () {
         	
    		});
