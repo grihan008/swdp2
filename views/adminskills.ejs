@@ -15,7 +15,6 @@
 	<form id="addskill" method="post" action="https://sheltered-savannah-33614.herokuapp.com/add_skill">
 		Name: <input type="text" name="name" required="">
 		XP: <input type="text" name="xp" required="">
-		<input type="hidden" name="cat_id" value="<%= cat_id %>">
 		<input type="submit">
 	</form>
 <script>
@@ -46,6 +45,7 @@
 		$(this).find("input[name]").each(function(index,node){
 			formData[node.name] = node.value;
 		});
+		formData["cat_id"] = <%= cat_id %>;
 		$.post($(this).attr("action"), formData).done(function () {
         	
    		});
