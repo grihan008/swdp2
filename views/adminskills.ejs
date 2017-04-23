@@ -12,6 +12,12 @@
 	<main>
 
 	</main>
+	<form id="addskill" method="post" action="https://sheltered-savannah-33614.herokuapp.com/add_skill">
+		Name: <input type="text" name="name" required="">
+		XP: <input type="text" name="xp" required="">
+		<input type="hidden" name="cat_id" value="<%= cat_id %>">
+		<input type="submit">
+	</form>
 <script>
 	$.ajax("https://sheltered-savannah-33614.herokuapp.com/skills/"+<%= cat_id %>)
 	.done(function(result){
@@ -20,9 +26,8 @@
 			'<h3>'+item.name+'</h3>'+
 			'<img src='+item.image_url+'>'+
 			'<h4>'+item.xp+'</h4>'+
-			'<button class="delskill" data-link="https://sheltered-savannah-33614.herokuapp.com/del_skill" data-id="'+item.id+'">Delete</button>'+
-			'</div>'+
 			'<a href="https://sheltered-savannah-33614.herokuapp.com/adminskill/'+item.id+'">View</a>'+
+			'<button class="delskill" data-link="https://sheltered-savannah-33614.herokuapp.com/del_skill" data-id="'+item.id+'">Delete</button>'+
 			'</div>';
 			$("main").append(skillblock);
 				$(".delskill").click(function(){
@@ -34,6 +39,17 @@
 				location.reload();
 			});			
 		});
+	});
+		$("#addskill").submit(function(e){
+		e.preventDefault();
+		var formData={};
+		$(this).find("input[name]").each(function(index,node){
+			formData[node.name] = node.value;
+		});
+		$.post($(this).attr("action"), formData).done(function () {
+        	
+   		});
+   		location.reload();
 	});
 </script>
 </body>
