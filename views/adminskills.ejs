@@ -44,6 +44,7 @@
 		var formData={};
 		$(this).find("input[name]").each(function(index,node){
 			formData[node.name] = node.value;
+			alert(node.name+" "+node.value);
 		});
 		formData["cat_id"] = <%= cat_id %>;
 		$.post($(this).attr("action"), formData).done(function () {
