@@ -18,6 +18,7 @@
 		<input type="submit">
 	</form>
 <script>
+	var cat_id = <%= cat_id %>;
 	$.ajax("https://sheltered-savannah-33614.herokuapp.com/skills/"+<%= cat_id %>)
 	.done(function(result){
 		result.forEach(function (item,i) {
@@ -46,7 +47,7 @@
 			formData[node.name] = node.value;
 			alert(node.name+" "+node.value);
 		});
-		formData["cat_id"] = <%= cat_id %>;
+		formData["cat_id"] = cat_id;
 		$.post($(this).attr("action"), formData).done(function () {
         	
    		});
