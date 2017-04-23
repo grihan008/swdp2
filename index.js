@@ -237,7 +237,7 @@ app.post('/add_step', function(req,res){
 
 app.post('/add_skill', function(req,res){
 	pg.connect(process.env.DATABASE_URL, function(err, client, done){
-		client.query("insert into skills(name, xp, cat_id) values('"+req.body.name+"','"+req.body.xp+"',"+req.body.cat_id+")", function(err, result){
+		client.query("insert into skills(name, xp, cat_id) values('"+req.body.name+"',"+req.body.xp+","+req.body.cat_id+")", function(err, result){
 			done();
 		});
 	});		
