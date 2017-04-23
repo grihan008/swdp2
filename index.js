@@ -205,9 +205,9 @@ app.post('/del_skill',function(req,res){
 //add skill
 app.post('/add_skill', function(req,res){
 	pg.connect(process.env.DATABASE_URL, function(err, client, done){
-		// client.query("insert into skills(skill_id, heading, description, step) values("+req.body.id+",'"+req.body.heading+"','"+req.body.description+"',"+req.body.step+")", function(err, result){
-		// 	done();
-		// });
+		client.query("insert into skills(name, xp, cat_id) values('"+req.body.name+"',"+req.body.xp+","+req.body.cat+")", function(err, result){
+			done();
+		});
 	});		
 });
 //delete step
@@ -230,13 +230,6 @@ app.post('/move_step', function(req,res){
 app.post('/add_step', function(req,res){
 	pg.connect(process.env.DATABASE_URL, function(err, client, done){
 		client.query("insert into steps(skill_id, heading, description, step) values("+req.body.id+",'"+req.body.heading+"','"+req.body.description+"',"+req.body.step+")", function(err, result){
-			done();
-		});
-	});		
-});
-app.post('/add_skill', function(req,res){
-	pg.connect(process.env.DATABASE_URL, function(err, client, done){
-		client.query("insert into skills(name, xp, cat_id) values('"+req.body.name+"',"+req.body.xp+","+req.body.cat+")", function(err, result){
 			done();
 		});
 	});		
