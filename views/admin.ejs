@@ -23,9 +23,13 @@
 			var catblock = '<div class="catblock">'+
 			'<h3>'+item.name+'</h3>'+
 			'<a href="https://sheltered-savannah-33614.herokuapp.com/adminskills/'+item.id+'">View</a>'+
-			'<button class="delskill" data-link="https://sheltered-savannah-33614.herokuapp.com/del_category" data-id="'+item.id+'">Delete</button>'+
+			'<button class="delcategory" data-link="https://sheltered-savannah-33614.herokuapp.com/del_category" data-id="'+item.id+'">Delete</button>'+
 			'</div>';
 			$("main").append(catblock);
+			$(".deldcategory").click(function(){
+				$.post($(this).attr("data-link"), {id: $(this).attr("data-id")});
+				location.reload();
+			});				
 		});
 	});
 	$("#addcategory").submit(function(e){
