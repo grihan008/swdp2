@@ -19,7 +19,7 @@
 	<form id="addstep" method="post" action="https://sheltered-savannah-33614.herokuapp.com/add_step">
 		<div class="form-group">
 		<label>Heading: <input type="text" name="heading" required="" class="form-control"></label>
-		<label>Description: <textarea name="description" required="" class="form-control"></textarea></label>
+		<label>Description: <input type="text" name="description" required="" class="form-control"></label>
 		<label>Step: <input type="number" name="step" required="" class="form-control"></label>
 		<input type="submit" class="btn btn-primary">
 		</div>
@@ -59,9 +59,8 @@
 	$("#addstep").submit(function(e){
 		e.preventDefault();
 		var formData={};
-		$(this).find("input[name], textarea[name]").each(function(index,node){
+		$(this).find("input[name]").each(function(index,node){
 			formData[node.name] = node.value;
-			alert("node.name");
 		});
 		formData["id"] = id;
 		$.post($(this).attr("action"), formData).done(function () {

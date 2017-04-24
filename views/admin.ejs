@@ -45,7 +45,7 @@
 	$("#addcategory").submit(function(e){
 		e.preventDefault();
 		var formData={};
-		$(this).find("input[name], textarea[name]").each(function(index,node){
+		$(this).find("input[name]").each(function(index,node){
 			formData[node.name] = node.value;
 		});
 		$.post($(this).attr("action"), formData).done(function () {
