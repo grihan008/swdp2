@@ -233,7 +233,7 @@ app.get('/skills/:cat_id', function(req,res){
 });
 app.post('/complete_skill', function(req,res){
 	pg.connect(process.env.DATABASE_URL, function(err, client, done){
-		client.query("insert into skills_users(user_id, skill_id) values("+sess.userID+","+req.body.skillID+")", function(err, result){
+		client.query("insert into skills_users(user_id, skill_id) values("+sess.userID+","+req.body.skill_id+")", function(err, result){
 			done();
 		});
 	});		
