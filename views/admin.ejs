@@ -26,7 +26,7 @@
 			'<button class="delcategory" data-link="https://sheltered-savannah-33614.herokuapp.com/del_category" data-id="'+item.id+'">Delete</button>'+
 			'</div>';
 			$("main").append(catblock);
-			$(".deldcategory").click(function(){
+			$(".delcategory").click(function(){
 				$.post($(this).attr("data-link"), {id: $(this).attr("data-id")});
 				location.reload();
 			});				
