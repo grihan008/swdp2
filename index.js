@@ -190,7 +190,7 @@ app.post('/upload_skill', parser.single('image'), function(req, res) {
 		});
 	});	
 });
-app.post('/upload_skill', parser.single('image'), function(req, res) {
+app.post('/upload_category', parser.single('image'), function(req, res) {
 	pg.connect(process.env.DATABASE_URL, function(err, client, done){
 		client.query("update categories set image_url='"+req.file.url+"' where id="+req.body.id, function(err, result){
 			done();
