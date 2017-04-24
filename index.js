@@ -57,7 +57,7 @@ app.post('/login', function(req,res){
 				if (loggedin){
 					sess.userLoggedIn=true;
 					sess.userID=id;
-					res.json(user);
+					res.json({id:id});
 				}
 				else{
 					req.session.destroy(function(err) {
