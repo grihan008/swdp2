@@ -23,6 +23,7 @@
 			var catblock = '<div class="catblock">'+
 			'<h3>'+item.name+'</h3>'+
 			'<a href="https://sheltered-savannah-33614.herokuapp.com/adminskills/'+item.id+'">View</a>'+
+			'<button class="delskill" data-link="https://sheltered-savannah-33614.herokuapp.com/del_category" data-id="'+item.id+'">Delete</button>'+
 			'</div>';
 			$("main").append(catblock);
 		});

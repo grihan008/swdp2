@@ -277,6 +277,13 @@ app.post('/del_step', function(req,res){
 		});
 	});		
 });
+app.post('/del_category', function(req,res){
+	pg.connect(process.env.DATABASE_URL, function(err, client, done){
+		client.query("Delete FROM categories where id="+req.body.id, function(err, result){
+			done();
+		});
+	});		
+});
 //move step
 app.post('/move_step', function(req,res){
 	pg.connect(process.env.DATABASE_URL, function(err, client, done){
