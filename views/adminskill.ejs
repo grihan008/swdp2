@@ -26,10 +26,9 @@
 	var id = <%= id %>;
 	$.ajax("https://sheltered-savannah-33614.herokuapp.com/skill/"+id)
 	.done(function(result){
-		result.forEach(function (item,i) {
 			var skillblock = '<div class="skillblock">'+
-			'<h3>'+item.name+'</h3>'+
-			'<h4>'+item.xp+'</h4>'+
+			'<h3>'+result.name+'</h3>'+
+			'<h4>'+result.xp+'</h4>'+
 			'</div>';
 			$("main").append(skillblock);
 			$.ajax("https://sheltered-savannah-33614.herokuapp.com/skill_steps/"+id)
@@ -54,7 +53,6 @@
 					})
 				});
 			});								
-		});
 	});
 	$("#addstep").submit(function(e){
 		e.preventDefault();
