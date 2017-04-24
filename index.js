@@ -206,7 +206,7 @@ app.post('/upload_category', parser.single('image'), function(req, res) {
 //Get categories
 app.get('/categories', function(req, res) {
 	pg.connect(process.env.DATABASE_URL, function(err, client, done){
-		client.query("SELECT * FROM categories", function(err, result){
+		client.query("SELECT * FROM categories order by name", function(err, result){
 			done();
 			if (err){
 				res.send("Error");
