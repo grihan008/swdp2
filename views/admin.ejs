@@ -22,6 +22,9 @@
 		result.forEach(function (item,i) {
 			var catblock = '<div class="catblock">'+
 			'<h3>'+item.name+'</h3>'+
+					'<img src='+item.image_url+'>'+
+					'<form class="updphotoform" method="POST" action="https://sheltered-savannah-33614.herokuapp.com/upload_category" enctype="multipart/form-data"><input type="file" name="image"><input type="hidden" name="id" value="'+item.id+'"><input type="hidden" name="catid" value="'+item.id+'">'+
+					'<button type="submit" class="updphoto">Update photo</button></form>'+
 			'<a href="https://sheltered-savannah-33614.herokuapp.com/adminskills/'+item.id+'">View</a>'+
 			'<button class="delcategory" data-link="https://sheltered-savannah-33614.herokuapp.com/del_category" data-id="'+item.id+'">Delete</button>'+
 			'</div>';
