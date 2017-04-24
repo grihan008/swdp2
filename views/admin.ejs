@@ -12,6 +12,10 @@
 	<main>
 
 	</main>
+	<form id="addcategory" method="post" action="https://sheltered-savannah-33614.herokuapp.com/add_category">
+		Name: <input type="text" name="name" required="">
+		<input type="submit">
+	</form>	
 <script>
 	$.ajax("https://sheltered-savannah-33614.herokuapp.com/categories")
 	.done(function(result){
@@ -22,6 +26,17 @@
 			'</div>';
 			$("main").append(catblock);
 		});
+	});
+	$("#addcategories").submit(function(e){
+		e.preventDefault();
+		var formData={};
+		$(this).find("input[name]").each(function(index,node){
+			formData[node.name] = node.value;
+		});
+		$.post($(this).attr("action"), formData).done(function () {
+        	
+   		});
+   		location.reload();
 	});
 </script>
 </body>

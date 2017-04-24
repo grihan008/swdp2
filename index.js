@@ -262,6 +262,13 @@ app.post('/add_skill', function(req,res){
 		});
 	});		
 });
+app.post('/add_category', function(req,res){
+	pg.connect(process.env.DATABASE_URL, function(err, client, done){
+		client.query("insert into categories(name) values('"+req.body.name+"')", function(err, result){
+			done();
+		});
+	});		
+});
 //delete step
 app.post('/del_step', function(req,res){
 	pg.connect(process.env.DATABASE_URL, function(err, client, done){
