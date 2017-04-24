@@ -18,9 +18,9 @@
 
 	</main>
 	<form id="addskill" method="post" action="https://sheltered-savannah-33614.herokuapp.com/add_skill">
-		<div class="formgroup">
-		<label>Name: <input type="text" name="name" required="" class="formcontrol"></label>
-		<label>XP: <input type="text" name="xp" required="" class="formcontrol"></label>
+		<div class="form-group">
+		<label>Name: <input type="text" name="name" required="" class="form-control"></label>
+		<label>XP: <input type="text" name="xp" required="" class="form-control"></label>
 		<input type="submit">
 		</div>
 	</form>
@@ -33,7 +33,7 @@
 			var skillblock = '<div class="skillblock">'+
 			'<h3>'+item.name+'</h3>'+
 			'<img class="img-fluid" src='+item.image_url+'>'+
-					'<form class="updphotoform" method="POST" action="https://sheltered-savannah-33614.herokuapp.com/upload_skill" enctype="multipart/form-data"><div class="formgroup"><input type="file" name="image" class="formcontrol"><input type="hidden" name="id" value="'+item.id+'"><input type="hidden" name="catid" value="'+cat_id+'">'+
+					'<form class="updphotoform" method="POST" action="https://sheltered-savannah-33614.herokuapp.com/upload_skill" enctype="multipart/form-data"><div class="form-group"><input type="file" name="image" class="form-control"><input type="hidden" name="id" value="'+item.id+'"><input type="hidden" name="catid" value="'+cat_id+'">'+
 					'<button type="submit" class="updphoto">Update photo</button></div></form>'+			
 			'<h4>'+item.xp+'</h4>'+
 			'<a href="https://sheltered-savannah-33614.herokuapp.com/adminskill/'+item.id+'">View</a>'+

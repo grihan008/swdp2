@@ -18,8 +18,8 @@
 
 	</main>
 	<form id="addcategory" method="post" action="https://sheltered-savannah-33614.herokuapp.com/add_category">
-		<div class="formgoup">
-		<label>Name: <input type="text" name="name" required="" class="formcontrol"></label>
+		<div class="form-group">
+		<label>Name: <input type="text" name="name" required="" class="form-control"></label>
 		<input type="submit" class="btn btn-primary">
 	</form>
 	</div>
@@ -30,9 +30,9 @@
 			var catblock = '<div class="catblock">'+
 			'<h3>'+item.name+'</h3>'+
 					'<img class="img-fluid" src='+item.image_url+'>'+
-					'<form class="updphotoform" method="POST" action="https://sheltered-savannah-33614.herokuapp.com/upload_category" enctype="multipart/form-data"><div class="formgroup"><input type="file" name="image" class="formcontrol"><input type="hidden" name="id" value="'+item.id+'"><input type="hidden" name="catid" value="'+item.id+'">'+
+					'<form class="updphotoform" method="POST" action="https://sheltered-savannah-33614.herokuapp.com/upload_category" enctype="multipart/form-data"><div class="form-group"><input type="file" name="image" class="form-control"><input type="hidden" name="id" value="'+item.id+'"><input type="hidden" name="catid" value="'+item.id+'">'+
 					'<button type="submit" class="updphoto btn btn-primary">Update photo</button></div></form>'+
-			'<a href="https://sheltered-savannah-33614.herokuapp.com/adminskills/'+item.id+'">View</a>'+
+			'<a class="btn btn-primary" href="https://sheltered-savannah-33614.herokuapp.com/adminskills/'+item.id+'">View</a>'+
 			'<button class="delcategory btn btn-danger" data-link="https://sheltered-savannah-33614.herokuapp.com/del_category" data-id="'+item.id+'">Delete</button>'+
 			'</div>';
 			$("main").append(catblock);

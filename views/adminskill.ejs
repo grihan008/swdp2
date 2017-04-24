@@ -17,10 +17,10 @@
 
 	</main>
 	<form id="addstep" method="post" action="https://sheltered-savannah-33614.herokuapp.com/add_step">
-		<div class="formgroup">
-		<label>Heading: <input type="text" name="heading" required="" class="formcontrol"></label>
-		<label>Description: <textarea type="text" name="description" required="" class="formcontrol"></textarea></label>
-		<label>Step: <input type="number" name="step" required="" class="formcontrol"></label>
+		<div class="form-group">
+		<label>Heading: <input type="text" name="heading" required="" class="form-control"></label>
+		<label>Description: <textarea type="text" name="description" required="" class="form-control"></textarea></label>
+		<label>Step: <input type="number" name="step" required="" class="form-control"></label>
 		<input type="submit" class="btn btn-primary">
 		</div>
 	</form>
@@ -39,7 +39,7 @@
 					var stepblock = '<div class="stepblock">'+
 					'<h4>'+item.heading+'</h4>'+
 					'<img src='+item.photo_url+'>'+
-					'<form class="updphotoform" method="POST" action="https://sheltered-savannah-33614.herokuapp.com/upload_step" enctype="multipart/form-data"><div class="formgroup"><input type="file" name="image"><input type="hidden" name="id" value="'+item.id+'"><input type="hidden" name="skillid" value="'+id+'">'+
+					'<form class="updphotoform" method="POST" action="https://sheltered-savannah-33614.herokuapp.com/upload_step" enctype="multipart/form-data"><div class="form-group"><input type="file" name="image" class="form-control"><input type="hidden" name="id" value="'+item.id+'"><input type="hidden" name="skillid" value="'+id+'">'+
 					'<button type="submit" class="updphoto btn btn-primary">Update photo</button></div></form>'+
 					'<input type="number" data-link="https://sheltered-savannah-33614.herokuapp.com/move_step" data-id="'+item.id+'" class="step" value="'+item.step+'">'+
 					'<button class="deldesc btn btn-danger" data-link="https://sheltered-savannah-33614.herokuapp.com/del_step" data-id="'+item.id+'">Delete</button>'+
