@@ -13,24 +13,27 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 </head>
 <body>
+	<div class="container">
 	<main>
 
 	</main>
 	<form id="addcategory" method="post" action="https://sheltered-savannah-33614.herokuapp.com/add_category">
-		Name: <input type="text" name="name" required="">
-		<input type="submit">
-	</form>	
+		<div class="formgoup">
+		<label>Name: <input type="text" name="name" required="" class="formcontrol"></label>
+		<input type="submit" class="btn btn-primary">
+	</form>
+	</div>
 <script>
 	$.ajax("https://sheltered-savannah-33614.herokuapp.com/categories")
 	.done(function(result){
 		result.forEach(function (item,i) {
 			var catblock = '<div class="catblock">'+
 			'<h3>'+item.name+'</h3>'+
-					'<img src='+item.image_url+'>'+
-					'<form class="updphotoform" method="POST" action="https://sheltered-savannah-33614.herokuapp.com/upload_category" enctype="multipart/form-data"><input type="file" name="image"><input type="hidden" name="id" value="'+item.id+'"><input type="hidden" name="catid" value="'+item.id+'">'+
-					'<button type="submit" class="updphoto">Update photo</button></form>'+
+					'<img class="img-fluid" src='+item.image_url+'>'+
+					'<form class="updphotoform" method="POST" action="https://sheltered-savannah-33614.herokuapp.com/upload_category" enctype="multipart/form-data"><div class="formgroup"><input type="file" name="image" class="formcontrol"><input type="hidden" name="id" value="'+item.id+'"><input type="hidden" name="catid" value="'+item.id+'">'+
+					'<button type="submit" class="updphoto btn btn-primary">Update photo</button></div></form>'+
 			'<a href="https://sheltered-savannah-33614.herokuapp.com/adminskills/'+item.id+'">View</a>'+
-			'<button class="delcategory" data-link="https://sheltered-savannah-33614.herokuapp.com/del_category" data-id="'+item.id+'">Delete</button>'+
+			'<button class="delcategory btn btn-danger" data-link="https://sheltered-savannah-33614.herokuapp.com/del_category" data-id="'+item.id+'">Delete</button>'+
 			'</div>';
 			$("main").append(catblock);
 			$(".delcategory").click(function(){

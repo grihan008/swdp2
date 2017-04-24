@@ -13,14 +13,18 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 </head>
 <body>
+	<div class="container">
 	<main>
 
 	</main>
 	<form id="addskill" method="post" action="https://sheltered-savannah-33614.herokuapp.com/add_skill">
-		Name: <input type="text" name="name" required="">
-		XP: <input type="text" name="xp" required="">
+		<div class="formgroup">
+		<label>Name: <input type="text" name="name" required="" class="formcontrol"></label>
+		<label>XP: <input type="text" name="xp" required="" class="formcontrol"></label>
 		<input type="submit">
+		</div>
 	</form>
+	</div>
 <script>
 	var cat_id = <%= cat_id %>;
 	$.ajax("https://sheltered-savannah-33614.herokuapp.com/skills/"+<%= cat_id %>)
@@ -28,12 +32,12 @@
 		result.forEach(function (item,i) {
 			var skillblock = '<div class="skillblock">'+
 			'<h3>'+item.name+'</h3>'+
-			'<img src='+item.image_url+'>'+
-					'<form class="updphotoform" method="POST" action="https://sheltered-savannah-33614.herokuapp.com/upload_skill" enctype="multipart/form-data"><input type="file" name="image"><input type="hidden" name="id" value="'+item.id+'"><input type="hidden" name="catid" value="'+cat_id+'">'+
-					'<button type="submit" class="updphoto">Update photo</button></form>'+			
+			'<img class="img-fluid" src='+item.image_url+'>'+
+					'<form class="updphotoform" method="POST" action="https://sheltered-savannah-33614.herokuapp.com/upload_skill" enctype="multipart/form-data"><div class="formgroup"><input type="file" name="image" class="formcontrol"><input type="hidden" name="id" value="'+item.id+'"><input type="hidden" name="catid" value="'+cat_id+'">'+
+					'<button type="submit" class="updphoto">Update photo</button></div></form>'+			
 			'<h4>'+item.xp+'</h4>'+
 			'<a href="https://sheltered-savannah-33614.herokuapp.com/adminskill/'+item.id+'">View</a>'+
-			'<button class="delskill" data-link="https://sheltered-savannah-33614.herokuapp.com/del_skill" data-id="'+item.id+'">Delete</button>'+
+			'<button class="delskill btn btn-danger" data-link="https://sheltered-savannah-33614.herokuapp.com/del_skill" data-id="'+item.id+'">Delete</button>'+
 			'</div>';
 			$("main").append(skillblock);
 				$(".delskill").click(function(){
