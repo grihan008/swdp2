@@ -246,7 +246,7 @@ app.post('/complete_skill', function(req,res){
 });
 app.post('/add_user', function(req,res){
 	pg.connect(process.env.DATABASE_URL, function(err, client, done){
-		client.query("insert into users (login, password, name, level) values('"+req.body.name+"','"+req.body.password+"','"+req.body.name+"', 0)", function(err, result){
+		client.query("insert into users (login, password, name, level) values('"+req.body.login+"','"+req.body.password+"','"+req.body.name+"', 0)", function(err, result){
 			done();
 			if (err){
 				res.json({done: false});				
