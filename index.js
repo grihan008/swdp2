@@ -246,7 +246,7 @@ app.post('/complete_skill', function(req,res){
 });
 app.post('/add_user', function(req,res){
 	pg.connect(process.env.DATABASE_URL, function(err, client, done){
-		client.query("insert into users (login, password, name, level, image_url) values('"+req.body.login+"','"+req.body.password+"','"+req.body.name+"', 0, 'http://res.cloudinary.com/hjcojzweg/image/upload/v1493064061/blank-profile-picture-973460_640_b8sn7w.png')", function(err, result){
+		client.query("insert into users (login, password, name, level, photo_url) values('"+req.body.login+"','"+req.body.password+"','"+req.body.name+"', 0, 'http://res.cloudinary.com/hjcojzweg/image/upload/v1493064061/blank-profile-picture-973460_640_b8sn7w.png')", function(err, result){
 			done();
 			if (err){
 				res.json({done: false});				
