@@ -227,7 +227,7 @@ app.get('/skill/:id', function(req,res){
 				res.send("Error");
 			}
 			else{
-				res.json(result.rows);
+				res.json(result.rows[0]);
 			}
 		});
 	});		
