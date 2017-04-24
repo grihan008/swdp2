@@ -30,8 +30,8 @@ app.use(cors());
 
 var sess;
 
-app.post('/login', function(req,res){
-	res.json({ id: 1});
+app.get('/login', function(req,res){
+	res.json({ id: 1 });
 	// sess=req.session;
 	// if (sess.userLoggedIn){
 	// 	res.json(sess.userID);
