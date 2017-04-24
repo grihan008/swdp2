@@ -31,41 +31,40 @@ app.use(cors());
 var sess;
 
 app.get('/login', function(req,res){
-	res.json({ id: 2 });
-	// sess=req.session;
-	// if (sess.userLoggedIn){
-	// 	res.json(sess.userID);
-	// }
-	// else{
-	// 	pg.connect(process.env.DATABASE_URL, function(err, client, done){
-	// 		client.query("SELECT * FROM users", function(err, result){
-	// 			done();
-	// 			var loggedin;
-	// 			var id;
-	// 			if (err){
-	// 				res.send("Error");
-	// 			}
-	// 			else{
-	// 				result.rows.forEach(function(item, i){
-	// 					if ((req.body.login==item.login)&&(req.body.password==item.password)){
-	// 						loggedin=true;
-	// 						id = item.id;
-	// 					}
-	// 				});
-	// 			}
-	// 			if (loggedin){
-	// 				sess.userLoggedIn=true;
-	// 				sess.userID=id;
-	// 				res.json(sess.userID);
-	// 			}
-	// 			else{
-	// 				req.session.destroy(function(err) {
+	sess=req.session;
+	if (sess.userLoggedIn){
+		res.json(sess.userID);
+	}
+	else{
+		pg.connect(process.env.DATABASE_URL, function(err, client, done){
+			client.query("SELECT * FROM users", function(err, result){
+				done();
+				var loggedin;
+				var id;
+				if (err){
+					res.send("Error");
+				}
+				else{
+					result.rows.forEach(function(item, i){
+						if ((req.body.login==item.login)&&(req.body.password==item.password)){
+							loggedin=true;
+							id = item.id;
+						}
+					});
+				}
+				if (loggedin){
+					sess.userLoggedIn=true;
+					sess.userID=id;
+					res.json(sess.userID);
+				}
+				else{
+					req.session.destroy(function(err) {
 						
-	// 				})
-	// 			}
-	// 		});
-	// 	});		
-	// }
+					})
+				}
+			});
+		});		
+	}
 });
 //Admin login + admin pages
 app.get('/loginadmin', function(req,res){
