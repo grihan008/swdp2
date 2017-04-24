@@ -244,6 +244,19 @@ app.post('/complete_skill', function(req,res){
 		});
 	});		
 });
+app.post('/add_user', function(req,res){
+	pg.connect(process.env.DATABASE_URL, function(err, client, done){
+		client.query("insert into users (login, password, name, level) values('"+req.body.name+"','"+req.body.password+"','"+req.body.name+"', 0)", function(err, result){
+			done();
+			if (err){
+				res.json({done: false});				
+			}
+			else{
+				res.json({done: true});
+			}			
+		});
+	});		
+});
 app.get('/completed_skills/:id', function(req,res){
 	pg.connect(process.env.DATABASE_URL, function(err, client, done){
 		client.query("SELECT skills.id, skills.name, skills.image_url FROM skills_users join skills on skills_users.skill_id = skills.id where skills_users.user_id="+req.params.id+"", function(err, result){
