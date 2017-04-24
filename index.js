@@ -236,10 +236,10 @@ app.post('/complete_skill', function(req,res){
 		client.query("insert into skills_users(user_id, skill_id) values("+sess.userID+","+req.body.skillID+")", function(err, result){
 			done();
 			if (err){
-				res.json({done: true});
+				res.json({done: false});				
 			}
 			else{
-				res.json({done: false});
+				res.json({done: true});
 			}
 		});
 	});		
